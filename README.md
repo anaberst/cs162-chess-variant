@@ -1,7 +1,7 @@
 # :crown: CS162 Chess Variant
 Final project for `CS162: Introduction to Computer Science II` at Oregon State University. It has been approved for public sharing.
 
-This project implements an abstract board game based on the chess variant known as "King of the Hills".
+This project implements an abstract board game based on the chess variant known as "King of the Hill".
 
 ## :hourglass_flowing_sand: Testing
 
