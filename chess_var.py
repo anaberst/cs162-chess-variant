@@ -26,7 +26,12 @@ class Pawn(ChessPiece):
     Represents a pawn.
     Inherits from ChessPiece.
     """
-    pass
+    def __init__(self, color):
+        """
+        Initializes a Pawn object with a color attribute
+        """
+        super().__init__(color)
+
 
 
 class Rook(ChessPiece):
