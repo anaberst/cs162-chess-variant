@@ -103,6 +103,11 @@ class ChessVar:
         """
         Initializes a ChessVar object.
         """
+        # initial game state
+        self._game_state = 'UNFINISHED'
+
+        # initial chess piece color
+        self._current_color = 'white'
 
         # initiate all white ChessPiece objects
         self._white_pawn = Pawn('white')
