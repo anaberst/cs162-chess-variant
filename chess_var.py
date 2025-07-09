@@ -63,7 +63,11 @@ class Bishop(ChessPiece):
     Represents a bishop.
     Inherits from ChessPiece.
     """
-    pass
+    def __init__(self, color):
+        """
+        Initializes a Bishop object with a color attribute
+        """
+        super().__init__(color)
 
 
 class Queen(ChessPiece):
