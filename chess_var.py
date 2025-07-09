@@ -20,4 +20,52 @@ class ChessPiece:
         Returns the chess piece's color
         """
         return self._color
-    
+
+
+class Pawn(ChessPiece):
+    """
+    Represents a pawn.
+    Inherits from ChessPiece.
+    """
+    pass
+
+
+class Rook(ChessPiece):
+    """
+    Represents a rook.
+    Inherits from ChessPiece.
+    """
+    pass
+
+
+class Knight(ChessPiece):
+    """
+    Represents a knight.
+    Inherits from ChessPiece.
+    """
+    pass
+
+
+class Bishop(ChessPiece):
+    """
+    Represents a bishop.
+    Inherits from ChessPiece.
+    """
+    pass
+
+
+class Queen(ChessPiece):
+    """
+    Represents a queen.
+    Inherits from ChessPiece.
+    """
+    pass
+
+
+class King(ChessPiece):
+    """
+    Represents a king.
+    Inherits from ChessPiece.
+    """
+    pass
+
