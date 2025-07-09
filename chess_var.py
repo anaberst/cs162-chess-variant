@@ -39,7 +39,11 @@ class Rook(ChessPiece):
     Represents a rook.
     Inherits from ChessPiece.
     """
-    pass
+    def __init__(self, color):
+        """
+        Initializes a Rook object with a color attribute
+        """
+        super().__init__(color)
 
 
 class Knight(ChessPiece):
