@@ -204,3 +204,21 @@ class ChessVar:
             ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
             ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
         ]
+
+    def get_game_state(self):
+        """
+        Returns string representing current game state.
+        3 options: UNFINISHED, WHITE_WON, BLACK_WON.
+        """
+        return self._game_state
+
+    def set_game_state(self, new_state):
+        """
+        Receives a game state as an argument and performs validation.
+        3 options: UNFINISHED, WHITE_WON, BLACK_WON.
+        If valid, amends the current game state; otherwise, returns None.
+        """
+        if new_state == 'UNFINISHED' or 'WHITE_WON' or 'BLACK_WON':
+            self._game_state = new_state
+
+        else: return None      # invalid state
