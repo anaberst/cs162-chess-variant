@@ -69,3 +69,24 @@ class King(ChessPiece):
     """
     pass
 
+
+class ChessVar:
+    """
+    Represents the chess variant "King of the Hill".
+    ChessVar will communicate with ChessPiece and all of its child classes to determine legal moves.
+    """
+    def __init__(self):
+        """
+        Initializes a ChessVar object.
+        """
+
+        self._board = [
+            ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
+            ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+            ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+        ]
