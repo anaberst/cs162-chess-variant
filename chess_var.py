@@ -51,7 +51,11 @@ class Knight(ChessPiece):
     Represents a knight.
     Inherits from ChessPiece.
     """
-    pass
+    def __init__(self, color):
+        """
+        Initializes a Knight object with a color attribute
+        """
+        super().__init__(color)
 
 
 class Bishop(ChessPiece):
