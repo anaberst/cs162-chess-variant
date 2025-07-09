@@ -75,7 +75,11 @@ class Queen(ChessPiece):
     Represents a queen.
     Inherits from ChessPiece.
     """
-    pass
+    def __init__(self, color):
+        """
+        Initializes a Queen object with a color attribute
+        """
+        super().__init__(color)
 
 
 class King(ChessPiece):
