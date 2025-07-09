@@ -104,6 +104,23 @@ class ChessVar:
         Initializes a ChessVar object.
         """
 
+        # initiate all white ChessPiece objects
+        self._white_pawn = Pawn('white')
+        self._white_rook = Rook('white')
+        self._white_knight = Knight('white')
+        self._white_bishop = Bishop('white')
+        self._white_queen = Queen('white')
+        self._white_king = King('white')
+
+        # initiate all black ChessPiece objects
+        self._black_pawn = Pawn('black')
+        self._black_rook = Rook('black')
+        self._black_knight = Knight('black')
+        self._black_bishop = Bishop('black')
+        self._black_queen = Queen('black')
+        self._black_king = King('black')
+
+        # for testing purposes
         self._board = [
             ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
             ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
