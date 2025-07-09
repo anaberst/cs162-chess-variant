@@ -259,3 +259,97 @@ class ChessVar:
                 self._chess_dict[move_to] = self._chess_dict[move_from]   # 'move to' square now holds ChessPiece object
 
                 self._chess_dict[move_from] = None                        # 'move from' square now empty
+
+    def string_to_index(self, string_coordinate):
+        """
+        Receives a string coordinate (e.g. 'A1') as an argument.
+        Converts string into index on nested list 'board'.
+        Returns tuple with two integers: converted letter and number of coordinate.
+        Returns None if string coordinate is an invalid entry.
+        """
+
+        letter = string_coordinate[0].lower()   # letter in coordinate
+        number = string_coordinate[1]           # number in coordinate
+
+        number_to_index = {
+            '1': 7,
+            '2': 6,
+            '3': 5,
+            '4': 4,
+            '5': 3,
+            '6': 2,
+            '7': 1,
+            '8': 0
+        }
+
+        if number in number_to_index:
+
+            number = number_to_index[number]      # convert number to index
+
+        else: return None                         # if number is invalid entry
+
+        letter_to_index = {
+            'a': 0,
+            'b': 1,
+            'c': 2,
+            'd': 3,
+            'e': 4,
+            'f': 5,
+            'g': 6,
+            'h': 7
+        }
+
+        if letter in letter_to_index:
+
+            letter = letter_to_index[letter]      # convert letter to index
+
+            return number, letter                 # return tuple
+
+        else: return None                         # if letter is invalid entry
+
+
+    def index_to_string(self, index_tuple):
+        """
+        Receives a tuple containing two indices (from the nested list 'board') as an argument.
+        First index will be converted to the letter portion of a coordinate in string notation.
+        Second index will be converted to the number portion of a coordinate in string notation.
+        Returns converted indices as a string. Returns None if indices are invalid entries.
+        """
+        number = index_tuple[0]       # index to be converted to a number
+        letter = index_tuple[1]       # index to be converted to a letter
+
+        index_to_number = {
+            7: '1',
+            6: '2',
+            5: '3',
+            4: '4',
+            3: '5',
+            2: '6',
+            1: '7',
+            0: '8'
+        }
+
+        if number in index_to_number:
+
+            number = index_to_number[number]      # convert first index to number
+
+        else: return None                         # if first index is invalid entry
+
+        index_to_letter = {
+            0: 'a',
+            1: 'b',
+            2: 'c',
+            3: 'd',
+            4: 'e',
+            5: 'f',
+            6: 'g',
+            7: 'h'
+        }
+
+        if letter in index_to_letter:
+
+            letter = index_to_letter[letter]       # convert second index to letter
+
+            return letter + number                 # return string
+
+        else: return None                          # if second index is invalid entry
