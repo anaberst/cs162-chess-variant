@@ -236,3 +236,26 @@ class ChessVar:
         '' = empty square
         """
         return self._board
+
+
+    def get_dictionary(self):
+        """
+        Returns dictionary representing the board.
+        Each square of the board is represented as a key in string notation (e.g. 'A1').
+        Values are either ChessPiece objects, representing the piece on the square, or None if empty.
+        """
+        return self._chess_dict
+
+    def set_dictionary(self, move_from, move_to):
+        """
+        Receives two string arguments: the square to move from and the square to move to.
+        Updates the dictionary to reflect the move, so the object at move_from is ...
+        transferred to move_to, and move_from becomes 'None' to represent an empty square.
+        """
+        if move_from in self._chess_dict:
+
+            if move_to in self._chess_dict:
+
+                self._chess_dict[move_to] = self._chess_dict[move_from]   # 'move to' square now holds ChessPiece object
+
+                self._chess_dict[move_from] = None                        # 'move from' square now empty
