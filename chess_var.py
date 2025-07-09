@@ -222,3 +222,17 @@ class ChessVar:
             self._game_state = new_state
 
         else: return None      # invalid state
+
+    def get_board(self):
+        """
+        Returns a nested list representing the current game board.
+        Uppercase = white, lowercase = black.
+        p = pawn
+        r = rook
+        n = knight
+        b = bishop
+        q = queen
+        k = king
+        '' = empty square
+        """
+        return self._board
