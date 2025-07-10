@@ -516,12 +516,12 @@ class ChessVar:
     def index_to_string(self, index_tuple):
         """
         Receives a tuple containing two indices (from the nested list 'board') as an argument.
-        First index will be converted to the letter portion of a coordinate in string notation.
-        Second index will be converted to the number portion of a coordinate in string notation.
+        First (row) index will be converted to the letter portion of a coordinate in string notation.
+        Second (column) index will be converted to the number portion of a coordinate in string notation.
         Returns converted indices as a string. Returns None if indices are invalid entries.
         """
-        number = index_tuple[0]       # index to be converted to a number
-        letter = index_tuple[1]       # index to be converted to a letter
+        row_index = index_tuple[0]       # index to be converted to a number
+        col_index = index_tuple[1]       # index to be converted to a letter
 
         index_to_number = {
             7: '1',
@@ -534,11 +534,11 @@ class ChessVar:
             0: '8'
         }
 
-        if number in index_to_number:
+        if row_index in index_to_number:
 
-            number = index_to_number[number]      # convert first index to number
+            row_index = index_to_number[row_index]      # convert row index to number
 
-        else: return None                         # if first index is invalid entry
+        else: return None                               # invalid row index
 
         index_to_letter = {
             0: 'a',
@@ -551,10 +551,10 @@ class ChessVar:
             7: 'h'
         }
 
-        if letter in index_to_letter:
+        if col_index in index_to_letter:
 
-            letter = index_to_letter[letter]       # convert second index to letter
+            col_index = index_to_letter[col_index]       # convert column index to letter
 
-            return letter + number                 # return string
+            return col_index + row_index                 # return string
 
-        else: return None                          # if second index is invalid entry
+        else: return None                               # invalid column index
