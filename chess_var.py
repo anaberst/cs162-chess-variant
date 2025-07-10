@@ -249,6 +249,19 @@ class King(ChessPiece):
         else:
             return 'k'
 
+    def legal_move(self, move_from, move_to):
+        """
+        Receives two tuples as parameters, both with two indices corresponding to piece's position in nested list 'board'.
+        Returns True if move is legal for a king. Returns False otherwise.
+        """
+        # determine move distance
+        row_distance = abs(move_from[0] - move_to[0])
+        col_distance = abs(move_from[1] - move_to[1])
+
+        # must move exactly one space in at least one direction
+        return (row_distance <= 1 and col_distance <= 1
+                and (row_distance == 1 or col_distance == 1))
+
 
 class ChessVar:
     """
