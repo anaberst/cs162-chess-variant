@@ -44,6 +44,41 @@ class Pawn(ChessPiece):
         else:
             return 'p'
 
+    def legal_move(self, move_from, move_to):
+        """
+        Receives two tuples as arguments, each with two indices corresponding to position in nested list 'board'.
+        Returns True if move is legal for a pawn. Returns False otherwise.
+        """
+        # determine direction and starting row based on color
+        if self.get_color() == 'white':
+            direction = -1      # white pawns move "up" (decreasing row numbers)
+            starting_row = 6    # white pawns start on row 6
+        else:
+            direction = 1       # black pawns move "down" (increasing row numbers)
+            starting_row = 1    # black pawns start on row 1
+
+        # first move only: two spaces forward is legal
+        if move_to[0] == move_from[0] + (2 * direction) and move_to[1] == move_from[1]:
+            if move_from[0] == starting_row:
+                return True
+            else:
+                return False
+
+        # one space forward is legal
+        elif move_to[0] == move_from[0] + direction:
+            if move_to[1] == move_from[1]:
+                return True
+
+            # diagonal capture is legal
+            elif abs(move_to[1] - move_from[1]) == 1:
+                return True
+
+            else:
+                return False
+
+        else:
+            return False
+
 
 class Rook(ChessPiece):
     """
