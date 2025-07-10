@@ -238,6 +238,27 @@ class ChessVar:
         return self._board
 
 
+    def set_board(self):
+        """
+        Updates the nested list 'board' by iterating through the dictionary and transposing values.
+        No return value.
+        """
+
+        for square in self._chess_dict:
+
+            index_tuple = self.string_to_index(square)
+            index_1 = index_tuple[0]
+            index_2 = index_tuple[1]
+
+            if self._chess_dict[square] is not None:
+
+                self._board[index_1][index_2] = self._chess_dict[square].get_abbreviation()
+
+            else:
+
+                self._board[index_1][index_2] = ' '
+
+
     def get_dictionary(self):
         """
         Returns dictionary representing the board.
