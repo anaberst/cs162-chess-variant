@@ -559,17 +559,9 @@ class ChessVar:
         vertical_distance = move_to[0] - move_from[0]
         horizontal_distance = move_to[1] - move_from[1]
 
-        # if moving only one space, path is clear
+        # if moving only one space
         if abs(vertical_distance) <= 1 and abs(horizontal_distance) <= 1:
-
-            # exception: pawn diagonal capture
-            if (isinstance(self._chess_dict[move_from_string], Pawn)
-                    and abs(horizontal_distance) == 1):               # only time pawns move horizontally
-
-                move_to_string = self.index_to_string(move_to)
-                return self._chess_dict[move_to_string] is not None   # a piece must be present to capture
-
-            return True
+            return self._one_space_move(move_to, horizontal_distance, move_from_string)
 
         # lateral moves
         if vertical_distance == 0:
@@ -582,6 +574,21 @@ class ChessVar:
         # diagonal moves
         elif abs(horizontal_distance) == abs(vertical_distance):
             return self._diagonal_move(start_row, start_col, horizontal_distance, vertical_distance)
+
+        return True
+
+    def _one_space_move(self, move_to, horizontal_distance, move_from_string):
+        """
+        Helper method for path_clear that handles single space move logic.
+        Receives the square to move to, horizontal distance, and starting square coordinates as arguments.
+        Returns True if path is clear. Returns False otherwise.
+        """
+        # exception: pawn diagonal capture
+        if (isinstance(self._chess_dict[move_from_string], Pawn)
+                and abs(horizontal_distance) == 1):               # only time pawns move horizontally
+
+            move_to_string = self.index_to_string(move_to)
+            return self._chess_dict[move_to_string] is not None   # a piece must be present to capture
 
         return True
 
