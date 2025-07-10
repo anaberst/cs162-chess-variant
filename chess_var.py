@@ -598,30 +598,30 @@ class ChessVar:
         Receives the start row, start column, and horizontal distance of the move as arguments.
         Returns True if path is clear. Returns False otherwise.
         """
+        # loop helper variables
+        checking_row = start_row
+        checking_col = start_col
+
         # moving left
         if horizontal_distance < 0:
 
             for step in range(0, abs(horizontal_distance) - 1):
-                new_list = [start_row, start_col - 1]
-                current_square = self.index_to_string(new_list)
+                checking_col -= 1    # move to next position to check
+                current_square = self.index_to_string((checking_row, checking_col))
 
                 # path not clear
                 if self._chess_dict[current_square] is not None:
                     return False
-
-                start_col -= 1
 
         # moving right
         else:
             for step in range(0, horizontal_distance - 1):
-                new_list = [start_row, start_col + 1]
-                current_square = self.index_to_string(new_list)
+                checking_col += 1    # move to next position to check
+                current_square = self.index_to_string((checking_row, checking_col))
 
                 # path not clear
                 if self._chess_dict[current_square] is not None:
                     return False
-
-                start_col += 1
 
         return True
 
@@ -631,6 +631,10 @@ class ChessVar:
         Receives the start row, start column, vertical distance, and starting square coordinates as arguments.
         Returns True if path is clear. Returns False otherwise.
         """
+        # loop helper variables
+        checking_row = start_row
+        checking_col = start_col
+
         # exception: pawns can move 2 spaces on first move but NOT to capture
         if isinstance(self._chess_dict[move_from_string], Pawn) is True:
 
@@ -690,6 +694,10 @@ class ChessVar:
         Receives the start row, start column, horizontal distance, and vertical distance as arguments.
         Returns True if path is clear. Returns False otherwise.
         """
+        # loop helper variables
+        checking_row = start_row
+        checking_col = start_col
+
         # moving bottom-up, left-to-right
         if vertical_distance < 0 < horizontal_distance:
 
