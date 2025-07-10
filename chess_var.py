@@ -595,7 +595,7 @@ class ChessVar:
     def _lateral_move(self, start_row, start_col, horizontal_distance):
         """
         Helper method for path_clear that handles lateral move logic.
-        Receives the start row, start column, and horizontal distance of the move as arguments.
+        Receives the starting row, starting column, and horizontal distance as arguments.
         Returns True if path is clear. Returns False otherwise.
         """
         # loop helper variables
@@ -628,7 +628,7 @@ class ChessVar:
     def _vertical_move(self, start_row, start_col, vertical_distance, move_from_string):
         """
         Helper method for path_clear that handles vertical move logic.
-        Receives the start row, start column, vertical distance, and starting square coordinates as arguments.
+        Receives the starting row, starting column, vertical distance, and starting square coordinates as arguments.
         Returns True if path is clear. Returns False otherwise.
         """
         # loop helper variables
@@ -683,7 +683,7 @@ class ChessVar:
     def _diagonal_move(self, start_row, start_col, horizontal_distance, vertical_distance):
         """
         Helper method for path_clear that handles diagonal move logic.
-        Receives the start row, start column, horizontal distance, and vertical distance as arguments.
+        Receives the starting row, starting column, horizontal distance, and vertical distance as arguments.
         Returns True if path is clear. Returns False otherwise.
         """
         # loop helper variables
@@ -694,29 +694,25 @@ class ChessVar:
         if vertical_distance < 0 < horizontal_distance:
 
             for step in range(0, horizontal_distance - 1):
-                new_list = [start_row - 1, start_col + 1]
-                current_square = self.index_to_string(new_list)
+                checking_row -= 1    # move to next position to check
+                checking_col += 1
+                current_square = self.index_to_string((checking_row, checking_col))
 
                 # path not clear
                 if self._chess_dict[current_square] is not None:
                     return False
-
-                start_row -= 1
-                start_col += 1
 
         # moving top-down, right-to-left
         elif vertical_distance > 0 > horizontal_distance:
 
             for step in range(0, vertical_distance - 1):
-                new_list = [start_row + 1, start_col - 1]
-                current_square = self.index_to_string(new_list)
+                checking_row += 1    # move to next position to check
+                checking_col -= 1
+                current_square = self.index_to_string((checking_row, checking_col))
 
                 # path not clear
                 if self._chess_dict[current_square] is not None:
                     return False
-
-                start_row += 1
-                start_col -= 1
 
         elif vertical_distance == horizontal_distance:
 
@@ -724,28 +720,24 @@ class ChessVar:
             if vertical_distance < 0:
 
                 for step in range(0, abs(vertical_distance) - 1):
-                    new_list = [start_row - 1, start_col - 1]
-                    current_square = self.index_to_string(new_list)
+                    checking_row -= 1    # move to next position to check
+                    checking_col -= 1
+                    current_square = self.index_to_string((checking_row, checking_col))
 
                     # path not clear
                     if self._chess_dict[current_square] is not None:
                         return False
-
-                    start_row -= 1
-                    start_col -= 1
 
             # moving top-down, left-to-right
             elif vertical_distance > 0:
 
                 for step in range(0, vertical_distance - 1):
-                    new_list = [start_row + 1, start_col + 1]
-                    current_square = self.index_to_string(new_list)
+                    checking_row += 1    # move to next position to check
+                    checking_col += 1
+                    current_square = self.index_to_string((checking_row, checking_col))
 
                     # path not clear
                     if self._chess_dict[current_square] is not None:
                         return False
-
-                    start_row += 1
-                    start_col += 1
 
         return True
