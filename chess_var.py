@@ -84,10 +84,8 @@ class Pawn(ChessPiece):
             # diagonal capture is legal
             elif abs(move_to[1] - move_from[1]) == 1:
                 return True
-
             else:
                 return False
-
         else:
             return False
 
@@ -192,7 +190,6 @@ class Bishop(ChessPiece):
             # must change both row and column by equal amounts
             if abs(move_from[0] - move_to[0]) == abs(move_from[1] - move_to[1]):
                 return True
-
             else:
                 return False
 
@@ -234,8 +231,8 @@ class Queen(ChessPiece):
         # all diagonal moves are legal
         elif abs(move_from[0] - move_to[0]) == abs(move_from[1] - move_to[1]):
             return True
-
-        else: return False
+        else:
+            return False
 
 
 class King(ChessPiece):
@@ -427,17 +424,13 @@ class ChessVar:
         """
 
         for square in self._chess_dict:
-
             index_tuple = self.string_to_index(square)
             index_1 = index_tuple[0]
             index_2 = index_tuple[1]
 
             if self._chess_dict[square] is not None:
-
                 self._board[index_1][index_2] = self._chess_dict[square].get_abbreviation()
-
             else:
-
                 self._board[index_1][index_2] = ' '
 
 
@@ -457,11 +450,8 @@ class ChessVar:
         transferred to move_to, and move_from becomes 'None' to represent an empty square.
         """
         if move_from in self._chess_dict:
-
             if move_to in self._chess_dict:
-
                 self._chess_dict[move_to] = self._chess_dict[move_from]   # 'move to' square now holds ChessPiece object
-
                 self._chess_dict[move_from] = None                        # 'move from' square now empty
 
 
@@ -472,7 +462,6 @@ class ChessVar:
         Returns tuple with two integers: converted letter and number of coordinate.
         Returns None if string coordinate is an invalid entry.
         """
-
         col_index = string_coordinate[0].lower()   # letter in coordinate
         row_index = string_coordinate[1]           # number in coordinate
 
@@ -488,10 +477,9 @@ class ChessVar:
         }
 
         if row_index in number_to_index:
-
             row_index = number_to_index[row_index]      # convert number to index
-
-        else: return None                               # invalid row coordinate
+        else:
+            return None                               # invalid row coordinate
 
         letter_to_index = {
             'a': 0,
@@ -505,12 +493,10 @@ class ChessVar:
         }
 
         if col_index in letter_to_index:
-
             col_index = letter_to_index[col_index]      # convert letter to index
-
             return row_index, col_index                 # return tuple
-
-        else: return None                               # invalid column coordinate
+        else:
+            return None                               # invalid column coordinate
 
 
     def index_to_string(self, index_tuple):
@@ -535,10 +521,9 @@ class ChessVar:
         }
 
         if row_index in index_to_number:
-
             row_index = index_to_number[row_index]      # convert row index to number
-
-        else: return None                               # invalid row index
+        else:
+            return None                               # invalid row index
 
         index_to_letter = {
             0: 'a',
@@ -552,9 +537,7 @@ class ChessVar:
         }
 
         if col_index in index_to_letter:
-
             col_index = index_to_letter[col_index]       # convert column index to letter
-
             return col_index + row_index                 # return string
-
-        else: return None                               # invalid column index
+        else:
+            return None                               # invalid column index
