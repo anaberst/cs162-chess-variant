@@ -205,18 +205,18 @@ class Queen(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a Queen object with a color attribute
+        Initializes a Queen object with two private data members:
+        color, letter
         """
         super().__init__(color)
+        self._letter = 'q'
 
-    def get_abbreviation(self):
+    def get_letter(self):
         """
         Returns 'Q' if white or 'q' if black.
+        Uses get_abbreviation method from parent class.
         """
-        if self.get_color() == 'white':
-            return 'Q'
-        else:
-            return 'q'
+        return self._letter
 
     def legal_move(self, move_from, move_to):
         """
