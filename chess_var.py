@@ -205,12 +205,14 @@ class ChessVar:
             ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
         ]
 
+
     def get_game_state(self):
         """
         Returns string representing current game state.
         3 options: UNFINISHED, WHITE_WON, BLACK_WON.
         """
         return self._game_state
+
 
     def set_game_state(self, new_state):
         """
@@ -222,6 +224,7 @@ class ChessVar:
             self._game_state = new_state
 
         else: return None      # invalid state
+
 
     def get_board(self):
         """
@@ -267,6 +270,7 @@ class ChessVar:
         """
         return self._chess_dict
 
+
     def set_dictionary(self, move_from, move_to):
         """
         Receives two string arguments: the square to move from and the square to move to.
@@ -280,6 +284,7 @@ class ChessVar:
                 self._chess_dict[move_to] = self._chess_dict[move_from]   # 'move to' square now holds ChessPiece object
 
                 self._chess_dict[move_from] = None                        # 'move from' square now empty
+
 
     def string_to_index(self, string_coordinate):
         """
