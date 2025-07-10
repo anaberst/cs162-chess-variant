@@ -102,6 +102,21 @@ class Rook(ChessPiece):
         else:
             return 'r'
 
+    def legal_move(self, move_from, move_to):
+        """
+        Receives two tuples as parameters, both with two indices corresponding to piece's position in nested list 'board'.
+        Returns True if move is legal for a rook. Returns False otherwise.
+        """
+        # all forward and backward moves are legal
+        if move_from[1] == move_to[1]:
+            return True
+
+        # all lateral moves are legal
+        elif move_from[0] == move_to[0]:
+            return True
+
+        else: return False                    
+
 
 class Knight(ChessPiece):
     """
