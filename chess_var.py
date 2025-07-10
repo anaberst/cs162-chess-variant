@@ -37,10 +37,8 @@ class Pawn(ChessPiece):
         Returns 'P' if white or 'p' if black.
         Returns None if color is invalid.
         """
-
         if self.get_color() == 'white':
             return 'P'
-
         else:
             return 'p'
 
@@ -95,10 +93,8 @@ class Rook(ChessPiece):
         """
         Returns 'R' if white or 'r' if black.
         """
-
         if self.get_color() == 'white':
             return 'R'
-
         else:
             return 'r'
 
@@ -133,10 +129,8 @@ class Knight(ChessPiece):
         """
         Returns 'N' if white or 'n' if black.
         """
-
         if self.get_color() == 'white':
             return 'N'
-
         else:
             return 'n'
 
@@ -171,10 +165,8 @@ class Bishop(ChessPiece):
         """
         Returns 'B' if white or 'b' if black.
         """
-
         if self.get_color() == 'white':
             return 'B'
-
         else:
             return 'b'
 
@@ -211,10 +203,8 @@ class Queen(ChessPiece):
         """
         Returns 'Q' if white or 'q' if black.
         """
-
         if self.get_color() == 'white':
             return 'Q'
-
         else:
             return 'q'
 
@@ -254,10 +244,8 @@ class King(ChessPiece):
         """
         Returns 'K' if white or 'k' if black.
         """
-
         if self.get_color() == 'white':
             return 'K'
-
         else:
             return 'k'
 
