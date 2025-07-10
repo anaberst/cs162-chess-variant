@@ -479,7 +479,7 @@ class ChessVar:
         if row_index in number_to_index:
             row_index = number_to_index[row_index]      # convert number to index
         else:
-            return None                               # invalid row coordinate
+            return None                                 # invalid row coordinate
 
         letter_to_index = {
             'a': 0,
@@ -496,7 +496,7 @@ class ChessVar:
             col_index = letter_to_index[col_index]      # convert letter to index
             return row_index, col_index                 # return tuple
         else:
-            return None                               # invalid column coordinate
+            return None                                 # invalid column coordinate
 
 
     def index_to_string(self, index_tuple):
@@ -523,7 +523,7 @@ class ChessVar:
         if row_index in index_to_number:
             row_index = index_to_number[row_index]      # convert row index to number
         else:
-            return None                               # invalid row index
+            return None                                 # invalid row index
 
         index_to_letter = {
             0: 'a',
@@ -554,52 +554,33 @@ class ChessVar:
         if isinstance(self._chess_dict[move_from_string], Knight) is True:
             return True
 
-        move_to_string = self.index_to_string(move_to)
         start_row = move_from[0]
         start_col = move_from[1]
-        end_row = move_to[0]
-        end_col = move_to[1]
         vertical_distance = move_to[0] - move_from[0]
         horizontal_distance = move_to[1] - move_from[1]
 
+        # if moving only one space, path is clear
+        if abs(vertical_distance) <= 1 and abs(horizontal_distance) <= 1:
 
-        # horizontal moves (excluding diagonal)
+            # exception: pawn diagonal capture
+            if (isinstance(self._chess_dict[move_from_string], Pawn)
+                    and abs(horizontal_distance) == 1):               # only time pawns move horizontally
+
+                move_to_string = self.index_to_string(move_to)
+                return self._chess_dict[move_to_string] is not None   # a piece must be present to capture
+
+            return True
+
+        # lateral moves (excluding diagonal)
         if vertical_distance == 0:
 
-            # single space lateral move
-            if abs(horizontal_distance) == 1:
-                return True
-
-            # moving left, multiple spaces
-            elif horizontal_distance < 0:
-
-                for step in range(0, abs(horizontal_distance) - 1):
-                    new_list = [start_row, start_col - 1]
-                    current_square = self.index_to_string(new_list)
-
-                    # path not clear
-                    if self._chess_dict[current_square] is not None:
-                        return False
-
-                    start_col -= 1
-
-            # moving right, multiple spaces
-            elif horizontal_distance > 0:
-                for step in range(0, horizontal_distance - 1):
-                    new_list = [start_row, start_col + 1]
-                    current_square = self.index_to_string(new_list)
-
-                    # path not clear
-                    if self._chess_dict[current_square] is not None:
-                        return False
-
-                    start_col += 1
+            return self._lateral_move(start_row, start_col, horizontal_distance)
 
 
         # vertical moves (excluding diagonal)
         elif horizontal_distance == 0:
 
-            # exception: pawns only move diagonally to capture
+            # exception: pawns can move 2 spaces on first move but NOT to capture
             if isinstance(self._chess_dict[move_from_string], Pawn) is True:
 
                 # white pawns moving up the board
@@ -616,7 +597,6 @@ class ChessVar:
 
                     else: return True
 
-
                 # black pawns moving down the board
                 else:
                     for step in range(0, vertical_distance):
@@ -630,10 +610,6 @@ class ChessVar:
                         start_row += 1
 
                     else: return True
-
-            # exception: single space move in order to capture
-            if abs(vertical_distance) == 1:
-                return True
 
             # moving up the board
             elif vertical_distance < 0:
@@ -663,22 +639,8 @@ class ChessVar:
         # diagonal moves
         elif abs(horizontal_distance) == abs(vertical_distance):
 
-            # single space diagonal move
-            if abs(vertical_distance) == 1:
-
-                # exception: pawns only move diagonally to capture
-                if isinstance(self._chess_dict[move_from_string], Pawn):
-                    if self._chess_dict[move_to_string] is not None:
-                        return True
-
-                    else: return False
-
-                # exception: single space move in order to capture
-                else: return True
-
-
             # moving bottom-up, left-to-right
-            elif vertical_distance < 0 < horizontal_distance:
+            if vertical_distance < 0 < horizontal_distance:
 
                 for step in range(0, horizontal_distance - 1):
                     new_list = [start_row - 1, start_col + 1]
@@ -704,7 +666,6 @@ class ChessVar:
 
                     start_row += 1
                     start_col -= 1
-
 
             elif vertical_distance == horizontal_distance:
 
