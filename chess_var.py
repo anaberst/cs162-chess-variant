@@ -738,3 +738,36 @@ class ChessVar:
             else: return True
 
         else: return True
+
+    def _lateral_move(self, start_row, start_col, horizontal_distance):
+        """
+        Helper method for path_clear that handles lateral move logic.
+        Receives the start row, start column, and horizontal distance of the move as arguments.
+        Returns True is path is clear. Returns False otherwise.
+        """
+        # moving left
+        if horizontal_distance < 0:
+
+            for step in range(0, abs(horizontal_distance) - 1):
+                new_list = [start_row, start_col - 1]
+                current_square = self.index_to_string(new_list)
+
+                # path not clear
+                if self._chess_dict[current_square] is not None:
+                    return False
+
+                start_col -= 1
+
+        # moving right
+        else:
+            for step in range(0, horizontal_distance - 1):
+                new_list = [start_row, start_col + 1]
+                current_square = self.index_to_string(new_list)
+
+                # path not clear
+                if self._chess_dict[current_square] is not None:
+                    return False
+
+                start_col += 1
+
+        return True
