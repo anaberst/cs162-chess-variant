@@ -571,69 +571,14 @@ class ChessVar:
 
             return True
 
-        # lateral moves (excluding diagonal)
+        # lateral moves
         if vertical_distance == 0:
-
             return self._lateral_move(start_row, start_col, horizontal_distance)
 
 
-        # vertical moves (excluding diagonal)
+        # vertical moves
         elif horizontal_distance == 0:
-
-            # exception: pawns can move 2 spaces on first move but NOT to capture
-            if isinstance(self._chess_dict[move_from_string], Pawn) is True:
-
-                # white pawns moving up the board
-                if self._chess_dict[move_from_string].get_color() == 'white':
-                    for step in range(0, abs(vertical_distance)):
-                        new_list = [start_row - 1, start_col]
-                        current_square = self.index_to_string(new_list)
-
-                        # path not clear
-                        if self._chess_dict[current_square] is not None:
-                            return False
-
-                        start_row -= 1
-
-                    else: return True
-
-                # black pawns moving down the board
-                else:
-                    for step in range(0, vertical_distance):
-                        new_list = [start_row + 1, start_col]
-                        current_square = self.index_to_string(new_list)
-
-                        # path not clear
-                        if self._chess_dict[current_square] is not None:
-                            return False
-
-                        start_row += 1
-
-                    else: return True
-
-            # moving up the board
-            elif vertical_distance < 0:
-                for step in range(0, abs(vertical_distance) - 1):
-                    new_list = [start_row - 1, start_col]
-                    current_square = self.index_to_string(new_list)
-
-                    # path not clear
-                    if self._chess_dict[current_square] is not None:
-                        return False
-
-                    start_row -= 1
-
-            # moving down the board
-            elif vertical_distance > 0:
-                for step in range(0, vertical_distance - 1):
-                    new_list = [start_row + 1, start_col]
-                    current_square = self.index_to_string(new_list)
-
-                    # path not clear
-                    if self._chess_dict[current_square] is not None:
-                        return False
-
-                    start_row += 1
+           return self._vertical_move(start_row, start_col, vertical_distance, move_from_string)
 
 
         # diagonal moves
@@ -704,7 +649,7 @@ class ChessVar:
         """
         Helper method for path_clear that handles lateral move logic.
         Receives the start row, start column, and horizontal distance of the move as arguments.
-        Returns True is path is clear. Returns False otherwise.
+        Returns True if path is clear. Returns False otherwise.
         """
         # moving left
         if horizontal_distance < 0:
@@ -732,3 +677,68 @@ class ChessVar:
                 start_col += 1
 
         return True
+
+    def _vertical_move(self, start_row, start_col, vertical_distance, move_from_string):
+        """
+        Helper method for path_clear that handles vertical move logic.
+        Receives the start row, start column, vertical distance, and starting square coordinates as arguments.
+        Returns True if path is clear. Returns False otherwise.
+        """
+        # exception: pawns can move 2 spaces on first move but NOT to capture
+        if isinstance(self._chess_dict[move_from_string], Pawn) is True:
+
+            # white pawns moving up the board
+            if self._chess_dict[move_from_string].get_color() == 'white':
+                for step in range(0, abs(vertical_distance)):
+                    new_list = [start_row - 1, start_col]
+                    current_square = self.index_to_string(new_list)
+
+                    # path not clear
+                    if self._chess_dict[current_square] is not None:
+                        return False
+
+                    start_row -= 1
+
+                else:
+                    return True
+
+            # black pawns moving down the board
+            else:
+                for step in range(0, vertical_distance):
+                    new_list = [start_row + 1, start_col]
+                    current_square = self.index_to_string(new_list)
+
+                    # path not clear
+                    if self._chess_dict[current_square] is not None:
+                        return False
+
+                    start_row += 1
+
+                else:
+                    return True
+
+        # moving up the board
+        elif vertical_distance < 0:
+            for step in range(0, abs(vertical_distance) - 1):
+                new_list = [start_row - 1, start_col]
+                current_square = self.index_to_string(new_list)
+
+                # path not clear
+                if self._chess_dict[current_square] is not None:
+                    return False
+
+                start_row -= 1
+
+        # moving down the board
+        elif vertical_distance > 0:
+            for step in range(0, vertical_distance - 1):
+                new_list = [start_row + 1, start_col]
+                current_square = self.index_to_string(new_list)
+
+                # path not clear
+                if self._chess_dict[current_square] is not None:
+                    return False
+
+                start_row += 1
+
+        else: return True
