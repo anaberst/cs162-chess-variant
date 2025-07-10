@@ -171,15 +171,14 @@ class Bishop(ChessPiece):
         Initializes a Bishop object with a color attribute
         """
         super().__init__(color)
+        self._letter = 'b'
 
-    def get_abbreviation(self):
+    def get_letter(self):
         """
         Returns 'B' if white or 'b' if black.
+        Uses get_abbreviation method from parent class.
         """
-        if self.get_color() == 'white':
-            return 'B'
-        else:
-            return 'b'
+        return self._letter
 
     def legal_move(self, move_from, move_to):
         """
