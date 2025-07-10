@@ -43,7 +43,8 @@ class Pawn(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a Pawn object with a color attribute
+        Initializes a Pawn object with two private data members:
+        color, letter
         """
         super().__init__(color)
         self._letter = 'p'
@@ -98,7 +99,7 @@ class Rook(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a Rook object with a color attribute
+        Initializes a Rook object with two private data members: color, letter.
         """
         super().__init__(color)
         self._letter = 'r'
@@ -133,7 +134,7 @@ class Knight(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a Knight object with a color attribute
+        Initializes a Knight object with two private data members: color, letter.
         """
         super().__init__(color)
         self._letter = 'n'
@@ -168,7 +169,7 @@ class Bishop(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a Bishop object with a color attribute
+        Initializes a Bishop object with two private data members: color, letter.
         """
         super().__init__(color)
         self._letter = 'b'
@@ -205,8 +206,7 @@ class Queen(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a Queen object with two private data members:
-        color, letter
+        Initializes a Queen object with two private data members: color, letter.
         """
         super().__init__(color)
         self._letter = 'q'
@@ -245,8 +245,7 @@ class King(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a King object with two private data members:
-        color, letter
+        Initializes a King object with two private data members: color, letter.
         """
         super().__init__(color)
         self._letter = 'k'
