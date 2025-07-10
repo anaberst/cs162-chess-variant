@@ -245,18 +245,18 @@ class King(ChessPiece):
     """
     def __init__(self, color):
         """
-        Initializes a King object with a color attribute
+        Initializes a King object with two private data members:
+        color, letter
         """
         super().__init__(color)
+        self._letter = 'k'
 
-    def get_abbreviation(self):
+    def get_letter(self):
         """
         Returns 'K' if white or 'k' if black.
+        Uses get_abbreviation method from parent class.
         """
-        if self.get_color() == 'white':
-            return 'K'
-        else:
-            return 'k'
+        return self._letter
 
     def legal_move(self, move_from, move_to):
         """
