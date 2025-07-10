@@ -575,75 +575,15 @@ class ChessVar:
         if vertical_distance == 0:
             return self._lateral_move(start_row, start_col, horizontal_distance)
 
-
         # vertical moves
         elif horizontal_distance == 0:
            return self._vertical_move(start_row, start_col, vertical_distance, move_from_string)
 
-
         # diagonal moves
         elif abs(horizontal_distance) == abs(vertical_distance):
+            return self._diagonal_move(start_row, start_col, horizontal_distance, vertical_distance)
 
-            # moving bottom-up, left-to-right
-            if vertical_distance < 0 < horizontal_distance:
-
-                for step in range(0, horizontal_distance - 1):
-                    new_list = [start_row - 1, start_col + 1]
-                    current_square = self.index_to_string(new_list)
-
-                    # path not clear
-                    if self._chess_dict[current_square] is not None:
-                        return False
-
-                    start_row -= 1
-                    start_col += 1
-
-            # moving top-down, right-to-left
-            elif vertical_distance > 0 > horizontal_distance:
-
-                for step in range(0, vertical_distance - 1):
-                    new_list = [start_row + 1, start_col - 1]
-                    current_square = self.index_to_string(new_list)
-
-                    # path not clear
-                    if self._chess_dict[current_square] is not None:
-                        return False
-
-                    start_row += 1
-                    start_col -= 1
-
-            elif vertical_distance == horizontal_distance:
-
-                # moving bottom-up, right-to-left
-                if vertical_distance < 0:
-
-                    for step in range(0, abs(vertical_distance) - 1):
-                        new_list = [start_row - 1, start_col - 1]
-                        current_square = self.index_to_string(new_list)
-
-                        # path not clear
-                        if self._chess_dict[current_square] is not None:
-                            return False
-                        start_row -= 1
-                        start_col -= 1
-
-                # moving top-down, left-to-right
-                elif vertical_distance > 0:
-
-                    for step in range(0, vertical_distance - 1):
-                        new_list = [start_row + 1, start_col + 1]
-                        current_square = self.index_to_string(new_list)
-
-                        # path not clear
-                        if self._chess_dict[current_square] is not None:
-                            return False
-
-                        start_row += 1
-                        start_col += 1
-
-            else: return True
-
-        else: return True
+        return True
 
     def _lateral_move(self, start_row, start_col, horizontal_distance):
         """
@@ -699,9 +639,6 @@ class ChessVar:
 
                     start_row -= 1
 
-                else:
-                    return True
-
             # black pawns moving down the board
             else:
                 for step in range(0, vertical_distance):
@@ -713,9 +650,6 @@ class ChessVar:
                         return False
 
                     start_row += 1
-
-                else:
-                    return True
 
         # moving up the board
         elif vertical_distance < 0:
@@ -730,7 +664,7 @@ class ChessVar:
                 start_row -= 1
 
         # moving down the board
-        elif vertical_distance > 0:
+        else:
             for step in range(0, vertical_distance - 1):
                 new_list = [start_row + 1, start_col]
                 current_square = self.index_to_string(new_list)
@@ -741,4 +675,70 @@ class ChessVar:
 
                 start_row += 1
 
-        else: return True
+        return True
+
+    def _diagonal_move(self, start_row, start_col, horizontal_distance, vertical_distance):
+        """
+        Helper method for path_clear that handles diagonal move logic.
+        Receives the start row, start column, horizontal distance, and vertical distance as arguments.
+        Returns True if path is clear. Returns False otherwise.
+        """
+        # moving bottom-up, left-to-right
+        if vertical_distance < 0 < horizontal_distance:
+
+            for step in range(0, horizontal_distance - 1):
+                new_list = [start_row - 1, start_col + 1]
+                current_square = self.index_to_string(new_list)
+
+                # path not clear
+                if self._chess_dict[current_square] is not None:
+                    return False
+
+                start_row -= 1
+                start_col += 1
+
+        # moving top-down, right-to-left
+        elif vertical_distance > 0 > horizontal_distance:
+
+            for step in range(0, vertical_distance - 1):
+                new_list = [start_row + 1, start_col - 1]
+                current_square = self.index_to_string(new_list)
+
+                # path not clear
+                if self._chess_dict[current_square] is not None:
+                    return False
+
+                start_row += 1
+                start_col -= 1
+
+        elif vertical_distance == horizontal_distance:
+
+            # moving bottom-up, right-to-left
+            if vertical_distance < 0:
+
+                for step in range(0, abs(vertical_distance) - 1):
+                    new_list = [start_row - 1, start_col - 1]
+                    current_square = self.index_to_string(new_list)
+
+                    # path not clear
+                    if self._chess_dict[current_square] is not None:
+                        return False
+
+                    start_row -= 1
+                    start_col -= 1
+
+            # moving top-down, left-to-right
+            elif vertical_distance > 0:
+
+                for step in range(0, vertical_distance - 1):
+                    new_list = [start_row + 1, start_col + 1]
+                    current_square = self.index_to_string(new_list)
+
+                    # path not clear
+                    if self._chess_dict[current_square] is not None:
+                        return False
+
+                    start_row += 1
+                    start_col += 1
+
+        return True
