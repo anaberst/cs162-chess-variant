@@ -136,15 +136,14 @@ class Knight(ChessPiece):
         Initializes a Knight object with a color attribute
         """
         super().__init__(color)
+        self._letter = 'n'
 
-    def get_abbreviation(self):
+    def get_letter(self):
         """
         Returns 'N' if white or 'n' if black.
+        Uses get_abbreviation method from parent class.
         """
-        if self.get_color() == 'white':
-            return 'N'
-        else:
-            return 'n'
+        return self._letter
 
     def legal_move(self, move_from, move_to):
         """
