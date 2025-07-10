@@ -20,6 +20,21 @@ class ChessPiece:
         """
         return self._color
 
+    def get_abbreviation(self):
+        """
+        Returns a string abbreviation for the chess piece.
+        Uppercase for white, lowercase for black.
+        """
+        letter = self.get_letter
+
+        # uppercase for white
+        if self.get_color() == 'white':
+            return letter.upper()
+
+        # lowercase for black
+        else:
+            return letter.lower()
+
 
 class Pawn(ChessPiece):
     """
