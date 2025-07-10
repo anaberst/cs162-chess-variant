@@ -10,13 +10,13 @@ class ChessPiece:
     """
     def __init__(self, color):
         """
-        Initializes a ChessPiece object with a color attribute
+        Initializes a ChessPiece object with a color attribute.
         """
         self._color = color.lower()  # 'black' or 'white'
 
     def get_color(self):
         """
-        Returns the chess piece's color
+        Returns the chess piece's color.
         """
         return self._color
 
@@ -46,16 +46,14 @@ class Pawn(ChessPiece):
         Initializes a Pawn object with a color attribute
         """
         super().__init__(color)
+        self._letter = 'p'
 
-    def get_abbreviation(self):
+    def get_letter(self):
         """
         Returns 'P' if white or 'p' if black.
         Returns None if color is invalid.
         """
-        if self.get_color() == 'white':
-            return 'P'
-        else:
-            return 'p'
+        return self._letter
 
     def legal_move(self, move_from, move_to):
         """
@@ -222,7 +220,6 @@ class Queen(ChessPiece):
             return 'Q'
         else:
             return 'q'
-
 
     def legal_move(self, move_from, move_to):
         """
