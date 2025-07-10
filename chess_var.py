@@ -397,7 +397,9 @@ class ChessVar:
         3 options: UNFINISHED, WHITE_WON, BLACK_WON.
         If valid, amends the current game state; otherwise, returns None.
         """
-        if new_state == 'UNFINISHED' or 'WHITE_WON' or 'BLACK_WON':
+        if (new_state == 'UNFINISHED'
+                or new_state == 'WHITE_WON'
+                or new_state == 'BLACK_WON'):
             self._game_state = new_state
 
         else: return None      # invalid state
