@@ -641,50 +641,42 @@ class ChessVar:
             # white pawns moving up the board
             if self._chess_dict[move_from_string].get_color() == 'white':
                 for step in range(0, abs(vertical_distance)):
-                    new_list = [start_row - 1, start_col]
-                    current_square = self.index_to_string(new_list)
+                    checking_row -= 1    # move to next position to check
+                    current_square = self.index_to_string((checking_row, checking_col))
 
                     # path not clear
                     if self._chess_dict[current_square] is not None:
                         return False
-
-                    start_row -= 1
 
             # black pawns moving down the board
             else:
                 for step in range(0, vertical_distance):
-                    new_list = [start_row + 1, start_col]
-                    current_square = self.index_to_string(new_list)
+                    checking_row += 1    # move to next position to check
+                    current_square = self.index_to_string((checking_row, checking_col))
 
                     # path not clear
                     if self._chess_dict[current_square] is not None:
                         return False
 
-                    start_row += 1
-
         # moving up the board
         elif vertical_distance < 0:
             for step in range(0, abs(vertical_distance) - 1):
-                new_list = [start_row - 1, start_col]
-                current_square = self.index_to_string(new_list)
+                checking_row -= 1  # move to next position to check
+                current_square = self.index_to_string((checking_row, checking_col))
 
                 # path not clear
                 if self._chess_dict[current_square] is not None:
                     return False
-
-                start_row -= 1
 
         # moving down the board
         else:
             for step in range(0, vertical_distance - 1):
-                new_list = [start_row + 1, start_col]
-                current_square = self.index_to_string(new_list)
+                checking_row += 1  # move to next position to check
+                current_square = self.index_to_string((checking_row, checking_col))
 
                 # path not clear
                 if self._chess_dict[current_square] is not None:
                     return False
-
-                start_row += 1
 
         return True
 
