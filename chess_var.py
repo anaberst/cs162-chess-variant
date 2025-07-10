@@ -32,6 +32,17 @@ class Pawn(ChessPiece):
         """
         super().__init__(color)
 
+    def get_abbreviation(self):
+        """
+        Returns 'P' if white or 'p' if black.
+        Returns None if color is invalid.
+        """
+
+        if self.get_color() == 'white':
+            return 'P'
+
+        else:
+            return 'p'
 
 
 class Rook(ChessPiece):
@@ -45,6 +56,17 @@ class Rook(ChessPiece):
         """
         super().__init__(color)
 
+    def get_abbreviation(self):
+        """
+        Returns 'R' if white or 'r' if black.
+        """
+
+        if self.get_color() == 'white':
+            return 'R'
+
+        else:
+            return 'r'
+
 
 class Knight(ChessPiece):
     """
@@ -56,6 +78,17 @@ class Knight(ChessPiece):
         Initializes a Knight object with a color attribute
         """
         super().__init__(color)
+
+    def get_abbreviation(self):
+        """
+        Returns 'N' if white or 'n' if black.
+        """
+
+        if self.get_color() == 'white':
+            return 'N'
+
+        else:
+            return 'n'
 
 
 class Bishop(ChessPiece):
@@ -69,6 +102,17 @@ class Bishop(ChessPiece):
         """
         super().__init__(color)
 
+    def get_abbreviation(self):
+        """
+        Returns 'B' if white or 'b' if black.
+        """
+
+        if self.get_color() == 'white':
+            return 'B'
+
+        else:
+            return 'b'
+
 
 class Queen(ChessPiece):
     """
@@ -81,6 +125,17 @@ class Queen(ChessPiece):
         """
         super().__init__(color)
 
+    def get_abbreviation(self):
+        """
+        Returns 'Q' if white or 'q' if black.
+        """
+
+        if self.get_color() == 'white':
+            return 'Q'
+
+        else:
+            return 'q'
+
 
 class King(ChessPiece):
     """
@@ -92,6 +147,17 @@ class King(ChessPiece):
         Initializes a King object with a color attribute
         """
         super().__init__(color)
+
+    def get_abbreviation(self):
+        """
+        Returns 'K' if white or 'k' if black.
+        """
+
+        if self.get_color() == 'white':
+            return 'K'
+
+        else:
+            return 'k'
 
 
 class ChessVar:
