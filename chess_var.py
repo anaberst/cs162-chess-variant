@@ -473,8 +473,8 @@ class ChessVar:
         Returns None if string coordinate is an invalid entry.
         """
 
-        letter = string_coordinate[0].lower()   # letter in coordinate
-        number = string_coordinate[1]           # number in coordinate
+        col_index = string_coordinate[0].lower()   # letter in coordinate
+        row_index = string_coordinate[1]           # number in coordinate
 
         number_to_index = {
             '1': 7,
@@ -487,11 +487,11 @@ class ChessVar:
             '8': 0
         }
 
-        if number in number_to_index:
+        if row_index in number_to_index:
 
-            number = number_to_index[number]      # convert number to index
+            row_index = number_to_index[row_index]      # convert number to index
 
-        else: return None                         # if number is invalid entry
+        else: return None                               # invalid row coordinate
 
         letter_to_index = {
             'a': 0,
@@ -504,13 +504,13 @@ class ChessVar:
             'h': 7
         }
 
-        if letter in letter_to_index:
+        if col_index in letter_to_index:
 
-            letter = letter_to_index[letter]      # convert letter to index
+            col_index = letter_to_index[col_index]      # convert letter to index
 
-            return number, letter                 # return tuple
+            return row_index, col_index                 # return tuple
 
-        else: return None                         # if letter is invalid entry
+        else: return None                               # invalid column coordinate
 
 
     def index_to_string(self, index_tuple):
