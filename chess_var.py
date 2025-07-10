@@ -51,7 +51,7 @@ class Pawn(ChessPiece):
     def get_letter(self):
         """
         Returns 'P' if white or 'p' if black.
-        Returns None if color is invalid.
+        Uses get_abbreviation method from parent class.
         """
         return self._letter
 
@@ -101,15 +101,14 @@ class Rook(ChessPiece):
         Initializes a Rook object with a color attribute
         """
         super().__init__(color)
+        self._letter = 'r'
 
-    def get_abbreviation(self):
+    def get_letter(self):
         """
         Returns 'R' if white or 'r' if black.
+        Uses get_abbreviation method from parent class.
         """
-        if self.get_color() == 'white':
-            return 'R'
-        else:
-            return 'r'
+        return self._letter
 
     def legal_move(self, move_from, move_to):
         """
