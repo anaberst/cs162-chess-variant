@@ -741,3 +741,24 @@ class ChessVar:
                         return False
 
         return True
+
+
+    def king_captured(self):
+        """
+        Checks dictionary for the king.
+        Returns True if king is absent and has been captured.
+        Returns False otherwise.
+        """
+        # white player captures black king
+        if self._current_color == 'white':
+            king = self._black_king
+
+        # black player captures white king
+        else:
+            king = self._white_king
+
+        for square in self._chess_dict:
+            if self._chess_dict[square] == king:
+                return False      # king not yet captured
+
+        return True               # king captured
