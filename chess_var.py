@@ -781,4 +781,85 @@ class ChessVar:
 
         return False           # king not on central squares
 
-    
+
+    def move_made(self, move_from, move_to):
+        """
+   	    Receives two string arguments: the square to move from and the square to move to.
+    	Checks if game is still in play, if it is current player's turn, if squares exist, if not moving off board,
+   	    if move is legal with the given chess piece, if any pieces are in the way and if it would result in any
+        captures. If legal: updates the board, updates the ChessPiece object coordinates, and returns True.
+        Otherwise, returns False.
+        """
+        move_from = move_from.lower()
+        move_to = move_to.lower()
+
+        starting_square = self.string_to_index(move_from)
+        final_square = self.string_to_index(move_to)
+
+        # if game is no longer in play
+        if self._game_state != 'UNFINISHED':
+            return False
+
+        # if no move is made
+        if move_from == move_to:
+            return False
+
+        # if 'move from' is invalid
+        if move_from not in self._chess_dict:
+            return False
+
+        # if 'move to' is invalid
+        if move_to not in self._chess_dict:
+            return False
+
+        # if 'move from' square is empty
+        moving_piece = self._chess_dict[move_from]
+        if moving_piece is None:
+            return False
+
+        # if not current player's turn
+        if self._current_color != moving_piece.get_color():
+            return False
+
+        # when capturing
+        captured_piece = self._chess_dict[move_to]
+        if captured_piece is not None:
+
+            # if player's own piece on the 'move to' square
+            if captured_piece.get_color() == self._current_color:
+                return False
+
+        # if move illegal for that piece
+        if moving_piece.legal_move(starting_square, final_square) is False:
+            return False
+
+        # if path not clear
+        if self.path_clear(starting_square, final_square) is False:
+            return False
+
+        # updates dictionary of current play
+        self.set_dictionary(move_from, move_to)
+
+        # dictionary updates nested list 'board'
+        self.set_board()
+
+        # check win conditions
+        if self.king_captured() is True or self.king_on_central_squares() is True:
+
+            # white won!
+            if self._current_color == 'white':
+                self._game_state = 'WHITE_WON'
+
+            # black won!
+            elif self._current_color == 'black':
+                self._game_state = 'BLACK_WON'
+
+        # switches current color for next play
+        if self._current_color == 'white':
+            self._current_color = 'black'
+
+        else:
+            self._current_color = 'white'
+
+        # move has been made
+        return True
