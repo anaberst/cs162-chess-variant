@@ -765,3 +765,20 @@ class ChessVar:
                 return False      # king not yet captured
 
         return True               # king captured
+
+
+    def king_on_central_squares(self):
+        """
+        Checks central squares (d4, d5, e4, e5) in dictionary for the king.
+        Returns True if king is on the four central squares.
+        Returns False otherwise.
+        """
+        central_squares = ['d4', 'd5', 'e4', 'e5']
+
+        for square in central_squares:
+            if isinstance(self._chess_dict[square], King) is True:
+                return True    # king found on central squares
+
+        return False           # king not on central squares
+
+    
