@@ -575,7 +575,6 @@ class ChessVar:
         elif abs(horizontal_distance) == abs(vertical_distance):
             return self._diagonal_move(start_row, start_col, horizontal_distance, vertical_distance)
 
-        return True
 
     def _one_space_move(self, move_to, horizontal_distance, move_from_string):
         """
@@ -590,6 +589,7 @@ class ChessVar:
             move_to_string = self.index_to_string(move_to)
             return self._chess_dict[move_to_string] is not None   # a piece must be present to capture
 
+        # path clear!
         return True
 
     def _lateral_move(self, start_row, start_col, horizontal_distance):
@@ -623,6 +623,7 @@ class ChessVar:
                 if self._chess_dict[current_square] is not None:
                     return False
 
+        # path clear!
         return True
 
     def _vertical_move(self, start_row, start_col, vertical_distance, move_from_string):
@@ -678,6 +679,7 @@ class ChessVar:
                 if self._chess_dict[current_square] is not None:
                     return False
 
+        # path clear!
         return True
 
     def _diagonal_move(self, start_row, start_col, horizontal_distance, vertical_distance):
@@ -740,6 +742,7 @@ class ChessVar:
                     if self._chess_dict[current_square] is not None:
                         return False
 
+        # path clear!
         return True
 
 
